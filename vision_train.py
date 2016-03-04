@@ -15,10 +15,6 @@ cv2.destroyAllWindows()
 #################      Now finding Contours         ###################
 
 im2, contours, heirarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-cv2.drawContours(im, contours, -1, (0,255,0), 3)
-cv2.imshow("Contours", im)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
 
 samples =  np.empty((0,100))
 responses = []
@@ -44,6 +40,9 @@ for cnt in contours:
 
 responses = np.array(responses,np.float32)
 responses = responses.reshape((responses.size,1))
+
+print responses
+
 print "training complete"
 
 np.savetxt('generalsamples.data',samples)
